@@ -39,8 +39,11 @@ $(document).ready(function(){
 				$('#feedback').text("Congratulations! You guessed the right number!");
 				$('#guessButton').prop("disabled",true);
 			}
-			
-			$('#guessesLeft').text(10-guessCount);
+			if(guessCount <= 9){
+				$('#guessesLeft').text(10-guessCount);
+			}else{
+				$('p').text("Last Chance!");
+			}
 			
 			if (guessCount > 10)
 			{
