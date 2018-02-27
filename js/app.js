@@ -39,7 +39,7 @@ $(document).ready(function(){
 				$('#feedback').text("Congratulations! You guessed the right number!");
 				$('#guessButton').prop("disabled",true);
 			}
-			if(guessCount <= 9){
+			if(guessCount < 9){
 				$('#guessesLeft').text(10-guessCount);
 			}else{
 				$('p').text("Last Chance!");
@@ -93,17 +93,23 @@ $(document).ready(function(){
         max = array.length;
 
     for(var i=1; i <= 10; i++){
-		setTimeout(function(){
+		
         guess = Math.floor((min + max) /2);
 		$("#userGuess").val(guess);
-				
+			
 			if(guess < value)
 				min = guess + 1;
 			else if (guess > value)
 				max = guess - 1;
 			
+				
 			$("#guessButton").click();
-				 }, 3000);
+			
+			if(guess == value){
+				break;
+			}
+			
+				 
 		
 	 }
 	
