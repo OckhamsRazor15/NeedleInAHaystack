@@ -21,6 +21,8 @@ $(document).ready(function(){
   		e.preventDefault();
 		
   		var guess = $('#userGuess').val();
+		
+			
 		if(guess > 0 && guess <= 1000){
 			guessCount++;
 			
@@ -39,40 +41,45 @@ $(document).ready(function(){
 				$('#feedback').text("Congratulations! You guessed the right number!");
 				$('#guessButton').prop("disabled",true);
 			}
+			
 			if(guessCount < 9){
 				$('#guessesLeft').text(10-guessCount);
 			}else{
 				$('p').text("Last Chance!");
 			}
-			
-			if (guessCount > 10)
+			//TODO FIX THIS
+			if (guessCount == 10 && guess != secretNum)
 			{
 				$('#feedback').text("The target number was " + secretNum + ". You couldn't get it. You will soon be escorted out.");
 				$('#guessButton').prop("disabled",true);
 			}
+			
 		}else{
 			$('#feedback').text("Please enter a valid number");
 		}
-		$('#userGuess').val("");
+		$('#userGuess').val("").focus();
+		
   	});
 
   	$(".new").click(newGame);
 
   	function newGame(){
-	//start a new game
-	//remove guess #
-	$("#guessesLeft").text("10");
-	//remove list of guesses
-	$("#guessList li").remove();
-	//remove hot/cold text
-	$("#feedback").text("Make your Guess!");
-	//remove guess input #
-	$("#userGuess").val("")
-  	//secret 1-1000 number generated
-  	secretNum = Math.floor((Math.random() * 1000) + 1);
-  	guessCount = 0;
-  	// for the cheaters
-  	console.log(secretNum);
+		location.reload();
+	// //start a new game
+	// guessCount = 0;
+	// //remove guess #
+	// $('p').text(10-guessCount + " guesses left");
+	// //remove list of guesses
+	// $("#guessList li").remove();
+	// //remove hot/cold text
+	// $("#feedback").text("Make your Guess!");
+	// //remove guess input #
+	// $("#userGuess").val("")
+  	// //secret 1-1000 number generated
+  	// secretNum = Math.floor((Math.random() * 1000) + 1);
+  	
+  	// // for the cheaters
+  	// console.log(secretNum);
 }
 
 	$(".comp").click(function(){		
@@ -106,6 +113,9 @@ $(document).ready(function(){
 			$("#guessButton").click();
 			
 			if(guess == value){
+				var guess,
+        min = 1,
+        max = array.length;
 				break;
 			}
 			
